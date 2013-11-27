@@ -14,16 +14,17 @@ describe "Login Integration", js: true do
   end
 
   describe "Community Navigation" do
-    it "links to correct url" do
+
+    before :each do
       click_link "Community"
       click_link "Networking"
       current_path.should eq '/networking'
     end
 
+    it "links to correct url" do
+    end
+
     it "contains correct content" do
-      click_link "Community"
-      click_link "Networking"
-      current_path.should eq '/networking'
 
       within 'ul.secondary-components' do
         find('h3', text: "Resources")
@@ -33,13 +34,10 @@ describe "Login Integration", js: true do
       page.should have_content "Seven Habits of Highly Successful MSPs"
     end
 
-    it "filters content" do
-      click_link "Community"
-      click_link "Networking"
-      current_path.should eq '/networking'
+    it "filters and navigates content" do
 
       within 'div#content' do
-        first('a.see-all').click
+        find('div.list-footer-controls').first('a.see-all').click
       end
 
       current_path.should eq '/networking/topics'
@@ -57,7 +55,7 @@ describe "Login Integration", js: true do
       end
 
       current_path.should eq '/networking/resources'
-      screenshot_and_open_image
+      page.should have_content "Seven Habits of Highly Successful MSPs"
 
       within all(:css, 'div.component.has-rating')[1] do
         find('img').should be_visible
