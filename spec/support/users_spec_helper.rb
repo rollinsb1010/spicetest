@@ -1,11 +1,11 @@
 module UsersSpecHelper
 
   def test_login
-    'brianvmf@gmail.com'
+    '$*&*&$'
   end
 
   def test_password
-    'Ewbcst10'
+    '$$RJKKJ'
   end
 
   def sign_in_user
